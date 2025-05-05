@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Novapharm - Αρχική</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="top-right-auth">
+    <div id="loginForm" style="display: none; flex-direction: column; gap: 5px;">
+      <input type="text" id="username" placeholder="Όνομα Χρήστη" />
+      <input type="password" id="password" placeholder="Κωδικός" />
+      <button onclick="handleLogin()">Είσοδος</button>
+    </div>
+    <button id="loginBtn" onclick="toggleLogin()">🔐 Login</button>
+    <button id="logoutBtn" onclick="logout()" style="display: none;">🚪 Logout</button>
+  </div>
+
+  <div class="container">
+    <header>
+      <h1>Novapharm</h1>
+      <p>Πληροφοριακό Σύστημα Διαχείρισης Παραγγελιών</p>
+    </header>
+
+    <nav class="menu">
+      <ul>
+        <li><a href="order.html">➕ Νέα Παραγγελία</a></li>
+        <li><a href="inventory.html">📦 Απόθεμα</a></li>
+        <li><a href="customers.html">🏥 Πελάτες</a></li>
+        <li><a href="approve_ord.html">✅ Εγκρίσεις</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section class="welcome">
+        <h2>Καλώς ήρθατε στο σύστημα της Novapharm</h2>
+        <p>Επιλέξτε την επιθυμητή λειτουργία από το μενού.</p>
+      </section>
+    
+      <section class="orders">
+        <h3>📄 Πρόσφατες Παραγγελίες</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Κωδικός</th>
+              <th>Πελάτης</th>
+              <th>Προϊόν</th>
+              <th>Ποσότητα</th>
+              <th>Ημερομηνία</th>
+              <th>Κατάσταση</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#1024</td>
+              <td>Φαρμακείο Λιβαδειάς</td>
+              <td>Παρακεταμόλη</td>
+              <td>50</td>
+              <td>04/05/2025</td>
+              <td><span class="status pending">Εκκρεμεί</span></td>
+            </tr>
+            <tr>
+              <td>#1023</td>
+              <td>Φαρμακείο Αθηνών</td>
+              <td>Ιβουπροφαίνη</td>
+              <td>30</td>
+              <td>03/05/2025</td>
+              <td><span class="status approved">Εγκρίθηκε</span></td>
+            </tr>
+            <tr>
+              <td>#1022</td>
+              <td>Φαρμακείο Θεσσαλονίκης</td>
+              <td>Ασπιρίνη</td>
+              <td>100</td>
+              <td>02/05/2025</td>
+              <td><span class="status rejected">Απορρίφθηκε</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Novapharm | Πληροφοριακό Σύστημα Παραγγελιών</p>
+    </footer>
+  </div>
+
+  <script>
+    function toggleLogin() {
+      const form = document.getElementById("loginForm");
+      form.style.display = form.style.display === "none" ? "flex" : "none";
+    }
+
+    function handleLogin() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username && password) {
+        alert(`Καλωσήρθες, ${username}!`);
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("loginBtn").style.display = "none";
+        document.getElementById("logoutBtn").style.display = "inline-block";
+      } else {
+        alert("Συμπλήρωσε και τα δύο πεδία.");
+      }
+    }
+
+    function logout() {
+      alert("Έγινε αποσύνδεση.");
+      location.reload();
+    }
+  </script>
+</body>
+</html>

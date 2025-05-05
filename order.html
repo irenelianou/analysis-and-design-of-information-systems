@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <title>Νέα Παραγγελία - Novapharm</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container order-page">
+    <h1>Καταχώρηση Νέας Παραγγελίας</h1>
+
+    <form id="orderForm">
+      <label for="customer">Πελάτης:</label>
+      <input type="text" id="customer" name="customer" placeholder="Ονομασία Φαρμακείου" required />
+
+      <div id="productsContainer">
+        <h2>Προϊόντα:</h2>
+
+        <div class="product-row">
+          <select name="product[]">
+            <option value="Παρακεταμόλη">Παρακεταμόλη</option>
+            <option value="Ασπιρίνη">Ασπιρίνη</option>
+            <option value="Ιβουπροφαίνη">Ιβουπροφαίνη</option>
+            <option value="Αμοξικιλλίνη">Αμοξικιλλίνη</option>
+          </select>
+          <input type="number" name="quantity[]" min="1" placeholder="Ποσότητα" required />
+          <button type="button" onclick="removeProduct(this)">✖</button>
+        </div>
+      </div>
+
+      <button type="button" id="add-product" onclick="addProduct()">➕ Προσθήκη Προϊόντος</button>
+
+      <button class="submit-button" type="submit">🧾 Υποβολή Παραγγελίας</button>
+    </form>
+
+    <footer>
+      <p>&copy; 2025 Novapharm</p>
+    </footer>
+  </div>
+
+  <script>
+    function addProduct() {
+      const container = document.getElementById("productsContainer");
+      const row = document.createElement("div");
+      row.className = "product-row";
+
+      row.innerHTML = `
+        <select name="product[]">
+          <option value="Παρακεταμόλη">Παρακεταμόλη</option>
+          <option value="Ασπιρίνη">Ασπιρίνη</option>
+          <option value="Ιβουπροφαίνη">Ιβουπροφαίνη</option>
+          <option value="Αμοξικιλλίνη">Αμοξικιλλίνη</option>
+        </select>
+        <input type="number" name="quantity[]" min="1" placeholder="Ποσότητα" required />
+        <button type="button" onclick="removeProduct(this)">✖</button>
+      `;
+
+      container.appendChild(row);
+    }
+
+    function removeProduct(btn) {
+      btn.parentElement.remove();
+    }
+
+    document.getElementById("orderForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Η παραγγελία καταχωρήθηκε επιτυχώς!");
+      this.reset();
+      document.getElementById("productsContainer").innerHTML = `
+        <h2>Προϊόντα:</h2>
+        <div class="product-row">
+          <select name="product[]">
+            <option value="Παρακεταμόλη">Παρακεταμόλη</option>
+            <option value="Ασπιρίνη">Ασπιρίνη</option>
+            <option value="Ιβουπροφαίνη">Ιβουπροφαίνη</option>
+            <option value="Αμοξικιλλίνη">Αμοξικιλλίνη</option>
+          </select>
+          <input type="number" name="quantity[]" min="1" placeholder="Ποσότητα" required />
+          <button type="button" onclick="removeProduct(this)">✖</button>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>
